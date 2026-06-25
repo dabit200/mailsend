@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Form Kirim Email</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Segoe UI, sans-serif;
+}
+
+body{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:linear-gradient(135deg,#667eea,#764ba2);
+    padding:20px;
+}
+
+.container{
+    width:100%;
+    max-width:500px;
+    background:#fff;
+    border-radius:20px;
+    padding:30px;
+    box-shadow:0 15px 40px rgba(0,0,0,.2);
+}
+
+.container h2{
+    text-align:center;
+    margin-bottom:25px;
+    color:#333;
+}
+
+.input-group{
+    margin-bottom:15px;
+}
+
+.input-group label{
+    display:block;
+    margin-bottom:6px;
+    color:#555;
+    font-weight:600;
+}
+
+.input-group input,
+.input-group textarea{
+    width:100%;
+    padding:12px;
+    border:1px solid #ddd;
+    border-radius:10px;
+    outline:none;
+    transition:.3s;
+}
+
+.input-group input:focus,
+.input-group textarea:focus{
+    border-color:#667eea;
+    box-shadow:0 0 10px rgba(102,126,234,.2);
+}
+
+textarea{
+    resize:none;
+}
+
+button{
+    width:100%;
+    padding:14px;
+    border:none;
+    border-radius:10px;
+    background:linear-gradient(135deg,#667eea,#764ba2);
+    color:white;
+    font-size:16px;
+    font-weight:bold;
+    cursor:pointer;
+    transition:.3s;
+}
+
+button:hover{
+    transform:translateY(-2px);
+    opacity:.95;
+}
+
+.footer{
+    text-align:center;
+    margin-top:15px;
+    color:#888;
+    font-size:13px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <h2>📧 Kirim Email</h2>
+
+    <form action="send.php" method="POST">
+
+        <div class="input-group">
+            <label>Email Tujuan</label>
+            <input type="email" name="to" placeholder="contoh@gmail.com" required>
+        </div>
+
+        <div class="input-group">
+            <label>Email Anda</label>
+            <input type="email" name="from" placeholder="emailanda@gmail.com" required>
+        </div>
+
+        <div class="input-group">
+            <label>Subject</label>
+            <input type="text" name="subject" placeholder="Masukkan subject..." required>
+        </div>
+
+        <div class="input-group">
+            <label>Pesan</label>
+            <textarea name="message" rows="6" placeholder="Tulis pesan Anda..." required></textarea>
+        </div>
+
+        <button type="submit">🚀 Kirim Email</button>
+
+    </form>
+
+    <div class="footer">
+        Form Email Modern
+    </div>
+</div>
+
+</body>
+</html>
