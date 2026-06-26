@@ -2,134 +2,135 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Form Kirim Email</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Kirim Email</title>
+
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 
 <style>
 *{
     margin:0;
     padding:0;
     box-sizing:border-box;
-    font-family:Segoe UI, sans-serif;
+    font-family:Segoe UI,Arial,sans-serif;
 }
-
 body{
+    background:linear-gradient(135deg,#4f46e5,#06b6d4);
     min-height:100vh;
     display:flex;
     justify-content:center;
     align-items:center;
-    background:linear-gradient(135deg,#667eea,#764ba2);
-    padding:20px;
 }
-
-.container{
-    width:100%;
-    max-width:500px;
+.card{
+    width:430px;
     background:#fff;
-    border-radius:20px;
+    border-radius:18px;
     padding:30px;
-    box-shadow:0 15px 40px rgba(0,0,0,.2);
+    box-shadow:0 20px 40px rgba(0,0,0,.2);
 }
-
-.container h2{
+h2{
     text-align:center;
-    margin-bottom:25px;
     color:#333;
+    margin-bottom:20px;
 }
-
-.input-group{
-    margin-bottom:15px;
-}
-
-.input-group label{
-    display:block;
-    margin-bottom:6px;
-    color:#555;
+label{
     font-weight:600;
+    color:#555;
 }
-
-.input-group input,
-.input-group textarea{
+input,textarea{
     width:100%;
     padding:12px;
+    margin-top:6px;
+    margin-bottom:16px;
     border:1px solid #ddd;
     border-radius:10px;
     outline:none;
-    transition:.3s;
+    font-size:15px;
 }
-
-.input-group input:focus,
-.input-group textarea:focus{
-    border-color:#667eea;
-    box-shadow:0 0 10px rgba(102,126,234,.2);
+input:focus,
+textarea:focus{
+    border-color:#4f46e5;
 }
-
-textarea{
-    resize:none;
-}
-
 button{
     width:100%;
     padding:14px;
     border:none;
     border-radius:10px;
-    background:linear-gradient(135deg,#667eea,#764ba2);
+    background:#4f46e5;
     color:white;
     font-size:16px;
-    font-weight:bold;
     cursor:pointer;
-    transition:.3s;
+    transition:.2s;
 }
-
 button:hover{
-    transform:translateY(-2px);
-    opacity:.95;
+    background:#3730a3;
 }
-
-.footer{
+#status{
     text-align:center;
     margin-top:15px;
-    color:#888;
-    font-size:13px;
+    color:green;
+    font-weight:bold;
 }
 </style>
-</head>
 
+</head>
 <body>
 
-<div class="container">
-    <h2>📧 Kirim Email</h2>
+<div class="card">
 
-    <form action="send.php" method="POST">
+<h2>📧 Kirim Email</h2>
 
-        <div class="input-group">
-            <label>Email Tujuan</label>
-            <input type="email" name="to" placeholder="contoh@gmail.com" required>
-        </div>
+<form id="emailForm">
 
-        <div class="input-group">
-            <label>Email Anda</label>
-            <input type="email" name="from" placeholder="emailanda@gmail.com" required>
-        </div>
+<label>Email Tujuan</label>
+<input type="email" name="to_email" required>
 
-        <div class="input-group">
-            <label>Subject</label>
-            <input type="text" name="subject" placeholder="Masukkan subject..." required>
-        </div>
+<label>Email Anda</label>
+<input type="email" name="from_email" required>
 
-        <div class="input-group">
-            <label>Pesan</label>
-            <textarea name="message" rows="6" placeholder="Tulis pesan Anda..." required></textarea>
-        </div>
+<label>Subjek</label>
+<input type="text" name="subject" required>
 
-        <button type="submit">🚀 Kirim Email</button>
+<label>Pesan</label>
+<textarea name="message" rows="6" required></textarea>
 
-    </form>
+<button type="submit">Kirim Email</button>
 
-    <div class="footer">
-        Form Email Modern
-    </div>
+</form>
+
+<div id="status"></div>
+
 </div>
+
+<script>
+emailjs.init({
+    publicKey: "YOUR_PUBLIC_KEY"
+});
+
+document.getElementById("emailForm").addEventListener("submit",function(e){
+
+e.preventDefault();
+
+emailjs.sendForm(
+"YOUR_SERVICE_ID",
+"YOUR_TEMPLATE_ID",
+this
+).then(function(){
+
+document.getElementById("status").innerHTML="✅ Email berhasil dikirim.";
+
+document.getElementById("emailForm").reset();
+
+},function(error){
+
+document.getElementById("status").innerHTML="❌ Gagal mengirim email.";
+
+console.log(error);
+
+});
+
+});
+</script>
 
 </body>
 </html>
